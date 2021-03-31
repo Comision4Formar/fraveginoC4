@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const {index} = require('../controllers/indexController');
+const  {agregarItem,quitarItem,mostrarCarrito, vaciarCarrito} = require('../controllers/carritoController')
 
-module.exports = router;
+router.get('/',index);
+router.get('/agregar/:id',agregarItem);
+router.get('/quitar/:id',quitarItem);
+router.get('/listar',mostrarCarrito);
+router.get('/vaciar',vaciarCarrito)
+
+module.exports = router
