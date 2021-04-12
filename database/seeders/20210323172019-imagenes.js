@@ -3,8 +3,8 @@
 const faker = require('faker')
 
 let images = [];
-for (let i = 0; i < 300; i++) {
-  for (let p = 1; p <= 100; p++) {
+for (let i = 0; i < 50; i++) {
+  for (let p = 1; p <= 50; p++) {
     let image = {
       link : faker.image.image(),
       productId : p,
