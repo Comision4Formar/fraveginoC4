@@ -10,7 +10,7 @@ let cartEmpty = document.getElementById('cart-empty');
 let btnCartEmpty = document.getElementById('btn-delete-cart');
 let btnNextBuy = document.getElementById('btn-next-buy');
 
-const urlBase = 'http://localhost:8080/';
+const urlBase = window.location.origin + '/';
 
 const agregarItem = async (e, id) => {
     e.preventDefault()
@@ -126,4 +126,16 @@ btnCartEmpty.addEventListener('click', (e) =>{
     }
  
     vaciarCarrito()
+})
+
+const mostrar = async () => {
+    let response = await fetch(urlBase + 'listar')
+    let result = await response.json()
+    mostrarCantidad(result)
+    cargarTabla(result)
+}
+
+window.addEventListener('load',()=>{
+    getCarrito()
+    mostrar()
 })
