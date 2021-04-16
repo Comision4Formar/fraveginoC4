@@ -177,6 +177,19 @@ module.exports = {
 
     },
     vaciarCarrito : (req,res) => {
+        if(req.session.userLogin){
+            console.log(req.session.carrito)
+            db.Order.destroy({
+                where : {
+                    id : req.session.carrito[0].orderId,
+                    userId : req.session.userLogin.id
+                }
+            })
+            .then( () => console.log('carrito vaciado'))
+            .catch( error => console.log(error))
+        }
+
+
         req.session.carrito = []
         return res.status(200).json(req.session.carrito)
 
